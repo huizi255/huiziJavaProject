@@ -4,15 +4,22 @@ import comm.huizi.week7.exception.ServiceException;
 import comm.huizi.week7.dao.CustomerDao;
 import comm.huizi.week7.bean.Customer;
 
-public class CustomerServiceImpl implements ICustomerService 
+  /**
+   * 业务逻辑层
+   * 事务管理（事务提交及回滚）
+   * 多次调用dao层代码完成增删改查
+   * 处理复杂业务逻辑
+   * */
+public class CustomerServiceImpl implements ICustomerService 	
 {
-   public CustomerDao theCustomerDao;
+   private CustomerDao customerDao;
    
    /**
     */
    public CustomerServiceImpl() 
    {
-    
+    //实例化CustomerDao对象
+	   customerDao = new CustomerDao();
    }
    
    /**
@@ -30,6 +37,6 @@ public class CustomerServiceImpl implements ICustomerService
     */
    public void register(Customer customer) 
    {
-    
+       customerDao.save(customer);
    }
 }

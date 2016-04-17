@@ -21,6 +21,7 @@ public class Customer {
 	}
 
 
+
 	/**
 	 * 提供set,get方法
 	 * */
