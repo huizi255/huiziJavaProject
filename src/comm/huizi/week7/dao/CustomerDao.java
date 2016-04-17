@@ -1,33 +1,54 @@
-//Source file: E:\\uml\\rose code\\comm\\huizi\\week7\\dao\\CustomerDao.java
-
 package comm.huizi.week7.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import comm.huizi.week7.bean.Customer;
+import comm.huizi.week7.util.ConnectionFactory;
 
 public class CustomerDao 
 {
    
    /**
-   @roseuid 5710D9650367
     */
-   public CustomerDao() 
+   public CustomerDao()
    {
-    
+	   
    }
-   
-   /**
+
+/**
    @param customer
-   @roseuid 5710D6ED0048
     */
    public void save(Customer customer) 
    {
-    
+	   Connection conn=null;
+	   PreparedStatement pstmt=null;
+       try {
+    	   try{
+        //1.2获取链接
+		conn=ConnectionFactory.getConn();
+		//3.创建pstmt
+		String sql = "insert into rj_customer(name,password,age) value(?,?,?)";
+	    pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, customer.getName());
+		pstmt.setString(2, customer.getPassword());
+		pstmt.setInt(3, customer.getAge());
+		//4.执行sql语句
+		pstmt.execute();
+		//5.处理结果集
+		//6.释放资源
+    	   }finally{
+    		  ConnectionFactory.close(null, pstmt, conn);
+    	   }
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
    }
    
    /**
    @param id
    @return comm.huizi.week7.bean.Customer
-   @roseuid 5710D715019E
     */
    public Customer findById(Long id) 
    {
@@ -37,7 +58,6 @@ public class CustomerDao
    /**
    @param name
    @return comm.huizi.week7.bean.Customer
-   @roseuid 5710D748019A
     */
    public Customer deleteByName(String name) 
    {
@@ -46,7 +66,6 @@ public class CustomerDao
    
    /**
    @param customer
-   @roseuid 5710D78B0342
     */
    public void update(Customer customer) 
    {

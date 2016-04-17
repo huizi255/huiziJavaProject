@@ -1,16 +1,37 @@
-//Source file: E:\\uml\\rose code\\comm\\huizi\\week7\\exception\\ServiceException.java
-
 package comm.huizi.week7.exception;
 
 
 public class ServiceException extends RuntimeException 
 {
+
+	public ServiceException() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ServiceException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ServiceException(String message, Throwable cause) {
+		super(message, cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ServiceException(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ServiceException(Throwable cause) {
+		super(cause);
+		// TODO Auto-generated constructor stub
+	}
    
    /**
-   @roseuid 5710DFF102E2
+    * 重写父类的方法
     */
-   public ServiceException() 
-   {
-    
-   }
+	
 }

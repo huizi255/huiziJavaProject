@@ -1,5 +1,3 @@
-//Source file: E:\\uml\\rose code\\comm\\huizi\\week7\\service\\CustomerServiceImpl.java
-
 package comm.huizi.week7.service;
 
 import comm.huizi.week7.exception.ServiceException;
@@ -11,7 +9,6 @@ public class CustomerServiceImpl implements ICustomerService
    public CustomerDao theCustomerDao;
    
    /**
-   @roseuid 5710D9480357
     */
    public CustomerServiceImpl() 
    {
@@ -22,16 +19,14 @@ public class CustomerServiceImpl implements ICustomerService
    @param name
    @param password
    @return comm.huizi.week7.bean.Customer
-   @roseuid 5710D8E703B7
     */
-   public Customer login(String name, String password) 
+   public Customer login(String name, String password)throws ServiceException 
    {
     return null;
    }
    
    /**
    @param customer
-   @roseuid 5710D92801B6
     */
    public void register(Customer customer) 
    {
