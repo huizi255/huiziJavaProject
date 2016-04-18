@@ -8,26 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import comm.huizi.week7.bean.Customer;
 import comm.huizi.week7.service.CustomerServiceImpl;
 import comm.huizi.week7.service.ICustomerService;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class LoginServlet
  */
-//可以通过访问http://localhost:8888/CustomerWeek08/register 访问到RegisterServlrt
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 private ICustomerService customerService;
-       
+       private ICustomerService customerService;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterServlet() {
+    public LoginServlet() {
         super();
         customerService = new CustomerServiceImpl();
-        
     }
 
 	/**
@@ -41,18 +37,16 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.处理编码
+        //1.处理编码
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		//2.获取参数
-		String name=request.getParameter("name");
-		String password=request.getParameter("password");
-		int age=Integer.parseInt(request.getParameter("age"));
-		Customer customer = new Customer(name,age,password); 
-		//3.调用service代码
-		customerService.register(customer); 
+		String name =request.getParameter("name");
+		String password = request.getParameter("password");
+		//3.调用service层代码
+		customerService.login(name, password);
 		//4.页面跳转
-		request.getRequestDispatcher("/registerSuccess.jsp").forward(request, response);
+		request.getRequestDispatcher("/loginSuccess.jsp").forward(request, response);
 	}
 
 }

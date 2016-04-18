@@ -2,6 +2,7 @@ package comm.huizi.week7.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import comm.huizi.week7.bean.Customer;
 import comm.huizi.week7.util.ConnectionFactory;
@@ -46,8 +47,32 @@ public class CustomerDao {
 	 * @param id
 	 * @return comm.huizi.week7.bean.Customer
 	 */
-	public Customer findById(Long id) {
-		return null;
+	public Customer findByName(String name) {
+		Customer customer = null;
+	    Connection conn =null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    try{
+	    	try{
+	    	conn = ConnectionFactory.getConn();
+	    	String sql ="select * from rj_customer where name = ?";
+	    	pstmt = conn.prepareStatement(sql);
+	    	pstmt.setString(1, name);
+	    	rs = pstmt.executeQuery();
+	    	while(rs.next()){
+	    		Long id = rs.getLong("id");
+	    		String password = rs.getString("password");
+	    		int age = rs.getInt("age");
+	    		customer = new Customer(name,age,password);
+	    		customer.setId(id);
+	    	}
+	    	 }finally{
+	    		ConnectionFactory.close(rs, pstmt, conn);
+	    	}
+	    }catch (Exception e) {
+			e.printStackTrace();
+	    }
+		return customer;
 	}
 
 	/**
@@ -56,7 +81,7 @@ public class CustomerDao {
 	 */
 	public Customer deleteByName(String name) {
 		return null;
-	}
+}
 
 	/**
 	 * @param customer

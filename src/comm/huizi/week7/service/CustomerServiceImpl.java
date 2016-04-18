@@ -29,7 +29,18 @@ public class CustomerServiceImpl implements ICustomerService
     */
    public Customer login(String name, String password)throws ServiceException 
    {
-    return null;
+	   Customer customer =null;
+	   Customer dbCustomer =customerDao.findByName(name);
+	   if(dbCustomer!=null){
+		   if(dbCustomer.getPassword().equals(password)){
+			   customer = dbCustomer;
+		   }else{
+			   throw new ServiceException("该密码不正确");
+		   }
+	   }else{
+		   throw new ServiceException("该用户不存在");
+	   }
+       return customer;
    }
    
    /**

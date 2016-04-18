@@ -14,7 +14,7 @@ public class ConnectionFactory {
 	
 	static{
 		driver = "com.mysql.jdbc.Driver";
-		url = "jdbc:mysql://127.0.0.1:3306/huizi";
+		url = "jdbc:mysql://127.0.0.1:3306/customer";
 		user="root";
 		password="root";
 	}
